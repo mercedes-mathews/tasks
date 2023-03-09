@@ -100,7 +100,16 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length >= 2) {
+        const sum = addends.reduce((a, b) => a + b);
+        const str = addends.toString();
+        const re = /,/gi;
+        return sum + "=" + str.replace(re, "+");
+    } else if (addends.length === 1) {
+        return addends[0] + "=" + addends[0];
+    } else {
+        return "0=0";
+    }
 }
 
 /**
