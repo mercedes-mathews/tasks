@@ -101,7 +101,7 @@ export function allRGB(colors: string[]): boolean {
  */
 export function makeMath(addends: number[]): string {
     if (addends.length >= 2) {
-        const sum = addends.reduce((a, b) => a + b);
+        const sum = addends.reduce((total, num) => total + num);
         const str = addends.toString();
         const re = /,/gi;
         return sum + "=" + str.replace(re, "+");
@@ -122,5 +122,46 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    if (values.length > 0) {
+        const allPositive = values.every(
+            (value: number): boolean => value >= 0
+        );
+        if (values.length === 1) {
+            const single = [...values, ...values];
+            return single;
+        } else {
+            if (allPositive) {
+                const sum = values.reduce((total, num) => total + num);
+                const positives = [...values, sum];
+                return positives;
+            } else {
+                const firstNegative = values.findIndex(
+                    (num: number): boolean => num < 0
+                );
+                if (firstNegative === 0) {
+                    const sum = 0;
+                    const finalList = [
+                        ...values.slice(0, 1),
+                        sum,
+                        ...values.slice(firstNegative + 1)
+                    ];
+                    return finalList;
+                } else {
+                    const beforeTheNegative = [
+                        ...values.slice(0, firstNegative)
+                    ];
+                    const sum = beforeTheNegative.reduce(
+                        (total, num) => total + num
+                    );
+                    const finalList = [
+                        ...values.slice(0, firstNegative + 1),
+                        sum,
+                        ...values.slice(firstNegative + 1)
+                    ];
+                    return finalList;
+                }
+            }
+        }
+    }
+    return [0];
 }
