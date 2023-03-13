@@ -144,7 +144,7 @@ export function publishQuestion(question: Question): Question {
             published: true
         };
         return newQuestion;
-}
+    }
 }
 
 /**
