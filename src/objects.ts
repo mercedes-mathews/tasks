@@ -97,11 +97,21 @@ export function toMarkdown(question: Question): string {
 }
 
 /**
- * Return a new version of the given question, except  the name should now be
+ * Return a new version of the given question, except the name should now be
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const newQuestion: Question = {
+        id: question.id,
+        name: newName,
+        type: question.type,
+        body: question.body,
+        expected: question.expected,
+        options: question.options,
+        points: question.points,
+        published: question.published
+    };
+    return newQuestion;
 }
 
 /**
