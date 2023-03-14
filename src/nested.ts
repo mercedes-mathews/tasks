@@ -187,7 +187,16 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const questionCollection = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+    const questionFromID = questionCollection.find(
+        (question: Question): boolean => question.id === targetId
+    );
+    if (questionFromID !== undefined) {
+        questionFromID.name = newName;
+    }
+    return questionCollection;
 }
 
 /***
