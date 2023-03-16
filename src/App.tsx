@@ -18,7 +18,7 @@ function App(): JSX.Element {
                 <h1>UD CISC275 - Mercedes Mathews </h1>
             </header>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            {<DoubleHalf></DoubleHalf>}
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
